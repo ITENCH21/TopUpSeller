@@ -1,0 +1,2458 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TopUpSeller — Профессиональное ведение маркетплейсов</title>
+  <meta name="description" content="TopUpSeller — агентство полного цикла по ведению ЛК на Ozon, Wildberries и Яндекс Маркет. Увеличиваем продажи, SEO, реклама, контент, фулфилмент." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- ============================================================
+       TELEGRAM & EMAIL CONFIG — НАСТРОЙТЕ ПЕРЕД ПУБЛИКАЦИЕЙ
+  ================================================================
+  1. Создайте бота через @BotFather в Telegram → получите токен
+  2. Напишите боту /start, затем зайдите на:
+     https://api.telegram.org/bot<TOKEN>/getUpdates — скопируйте chat.id
+  3. Вставьте TOKEN и CHAT_ID ниже
+  ============================================================ -->
+  <script>
+    const TG_TOKEN  = 'ЗАМЕНИТЕ_НА_ВАШ_ТОКЕН';   // токен бота
+    const TG_CHATID = 'ЗАМЕНИТЕ_НА_ВАШ_CHAT_ID'; // ваш chat_id
+  </script>
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    :root {
+      --bg:        #07091A;
+      --bg2:       #0D1030;
+      --card:      rgba(255,255,255,0.04);
+      --border:    rgba(255,255,255,0.08);
+      --purple:    #7C3AED;
+      --purple2:   #5B21B6;
+      --violet:    #A855F7;
+      --orange:    #F97316;
+      --orange2:   #EA580C;
+      --cyan:      #06B6D4;
+      --green:     #10B981;
+      --text:      #F8FAFC;
+      --text2:     #94A3B8;
+      --text3:     #CBD5E1;
+      --radius:    16px;
+      --radius-sm: 10px;
+      --shadow:    0 20px 60px rgba(0,0,0,0.5);
+      --glow:      0 0 40px rgba(124,58,237,0.35);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== GRADIENT TEXT ===== */
+    .grad {
+      background: linear-gradient(135deg, #A855F7 0%, #F97316 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .grad-blue {
+      background: linear-gradient(135deg, #06B6D4 0%, #7C3AED 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #7C3AED, #F97316);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 32px;
+      border-radius: 50px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #F97316, #7C3AED);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .btn-primary:hover::before { opacity: 1; }
+    .btn-primary span { position: relative; z-index: 1; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,58,237,0.5); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 2px solid rgba(255,255,255,0.2);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 12px 30px;
+      border-radius: 50px;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+    .btn-outline:hover {
+      border-color: var(--violet);
+      background: rgba(124,58,237,0.15);
+      transform: translateY(-2px);
+    }
+
+    /* ===== SECTION TITLE ===== */
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 1.1rem;
+      color: var(--text2);
+      max-width: 600px;
+    }
+    .section-head {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .section-head .section-sub { margin: 0 auto; }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      background: rgba(249,115,22,0.12);
+      border: 1px solid rgba(249,115,22,0.25);
+      border-radius: 50px;
+      padding: 5px 14px;
+      margin-bottom: 18px;
+    }
+
+    /* ===== SCROLL ANIMATION ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ===== NAVIGATION ===== */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 18px 0;
+      transition: all 0.4s;
+    }
+    #navbar.scrolled {
+      background: rgba(7,9,26,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .nav-logo span { color: var(--orange); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text2);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { flex-shrink: 0; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(7,9,26,0.98);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--violet); }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124,58,237,0.25) 0%, transparent 70%),
+                  radial-gradient(ellipse 60% 50% at 100% 100%, rgba(249,115,22,0.12) 0%, transparent 60%),
+                  radial-gradient(ellipse 50% 40% at 0% 100%, rgba(6,182,212,0.08) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(124,58,237,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124,58,237,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
+    }
+    #particles-canvas {
+      position: absolute; inset: 0;
+      pointer-events: none;
+    }
+    /* ===== HERO TWO-COLUMN LAYOUT ===== */
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 270px;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      min-width: 0;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(124,58,237,0.15);
+      border: 1px solid rgba(124,58,237,0.35);
+      border-radius: 50px;
+      padding: 8px 18px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--violet);
+      margin-bottom: 28px;
+      animation: pulse-border 3s infinite;
+    }
+    @keyframes pulse-border {
+      0%,100% { box-shadow: 0 0 0 0 rgba(124,58,237,0.3); }
+      50% { box-shadow: 0 0 0 8px rgba(124,58,237,0); }
+    }
+    .hero-badge .dot {
+      width: 8px; height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: blink 1.5s infinite;
+    }
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--text3);
+      margin-bottom: 40px;
+      max-width: 600px;
+      line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 56px;
+    }
+    .hero-mp {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .hero-mp-label {
+      font-size: 0.85rem;
+      color: var(--text2);
+      margin-right: 4px;
+    }
+    .mp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .mp-badge:hover {
+      border-color: var(--violet);
+      background: rgba(124,58,237,0.1);
+    }
+    .mp-badge.wb  { color: #CB11AB; }
+    .mp-badge.oz  { color: #005BFF; }
+    .mp-badge.ym  { color: #FFCC00; }
+    .mp-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+    }
+    .mp-dot.wb { background: #CB11AB; }
+    .mp-dot.oz { background: #005BFF; }
+    .mp-dot.ym { background: #FFCC00; }
+
+    /* Floating cards */
+    .hero-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      z-index: 2;
+      flex-shrink: 0;
+    }
+    .float-card {
+      background: rgba(13,16,48,0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      min-width: 220px;
+      box-shadow: var(--shadow);
+    }
+    .float-card:nth-child(1) { animation: float1 4s ease-in-out infinite; }
+    .float-card:nth-child(2) { animation: float2 4s ease-in-out infinite 1s; }
+    .float-card:nth-child(3) { animation: float1 4s ease-in-out infinite 2s; }
+    @keyframes float1 {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes float2 {
+      0%,100% { transform: translateY(-5px); }
+      50% { transform: translateY(5px); }
+    }
+    .float-card-label { font-size: 0.78rem; color: var(--text2); margin-bottom: 6px; }
+    .float-card-value { font-size: 1.4rem; font-weight: 700; }
+    .float-card-sub { font-size: 0.8rem; color: var(--green); margin-top: 4px; }
+
+    /* ===== TRUST STRIP ===== */
+    #trust {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.01);
+    }
+    .trust-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .trust-icon {
+      width: 44px; height: 44px;
+      background: rgba(124,58,237,0.15);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .trust-label { font-size: 0.9rem; font-weight: 600; }
+    .trust-val { font-size: 0.78rem; color: var(--text2); }
+
+    /* ===== PAIN POINTS ===== */
+    #pain {
+      padding: 100px 0;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+    }
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .pain-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .pain-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--purple), var(--orange));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .pain-card:hover { border-color: rgba(124,58,237,0.3); transform: translateY(-4px); }
+    .pain-card:hover::before { opacity: 1; }
+    .pain-icon { font-size: 2rem; margin-bottom: 14px; }
+    .pain-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
+    .pain-card p { font-size: 0.9rem; color: var(--text2); line-height: 1.65; }
+
+    /* ===== ABOUT ===== */
+    #about {
+      padding: 100px 0;
+      background: var(--bg2);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-content .section-title { text-align: left; }
+    .about-content .section-sub { margin: 0 0 32px; }
+    .about-text { color: var(--text3); line-height: 1.8; margin-bottom: 16px; }
+    .about-checkmarks {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+    .check-item .ck {
+      width: 22px; height: 22px;
+      background: linear-gradient(135deg, var(--purple), var(--orange));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-card-main {
+      background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(249,115,22,0.1));
+      border: 1px solid rgba(124,58,237,0.25);
+      border-radius: 24px;
+      padding: 40px;
+      text-align: center;
+    }
+    .about-big-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 5rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .about-num-label { color: var(--text2); font-size: 1rem; }
+    .about-mini-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .about-mini {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+    .about-mini-val {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .about-mini-label { font-size: 0.78rem; color: var(--text2); }
+
+    /* ===== STATS ===== */
+    #stats {
+      padding: 80px 0;
+      background: linear-gradient(135deg, rgba(124,58,237,0.12) 0%, rgba(249,115,22,0.08) 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .stat-label { font-size: 0.9rem; color: var(--text2); }
+
+    /* ===== SERVICES ===== */
+    #services {
+      padding: 100px 0;
+      background: var(--bg);
+    }
+    .services-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 48px;
+    }
+    .stab {
+      padding: 9px 22px;
+      border-radius: 50px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      color: var(--text2);
+      cursor: pointer;
+      transition: all 0.3s;
+      background: var(--card);
+    }
+    .stab.active, .stab:hover {
+      background: linear-gradient(135deg, var(--purple2), var(--purple));
+      border-color: transparent;
+      color: #fff;
+    }
+    .services-panel { display: none; }
+    .services-panel.active { display: block; }
+
+    .srv-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .srv-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .srv-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    .srv-card:hover { border-color: rgba(124,58,237,0.35); transform: translateY(-4px); }
+    .srv-card:hover::after { transform: scaleX(1); }
+    .srv-card-icon {
+      width: 52px; height: 52px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 18px;
+    }
+    .srv-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+    .srv-card p { font-size: 0.88rem; color: var(--text2); line-height: 1.65; }
+
+    /* ===== PLATFORMS ===== */
+    #platforms {
+      padding: 80px 0;
+      background: var(--bg2);
+    }
+    .platforms-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .platform-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .platform-card:hover { transform: translateY(-6px); }
+    .platform-logo {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+    .platform-logo.wb  { color: #CB11AB; }
+    .platform-logo.oz  { color: #005BFF; }
+    .platform-logo.ym  { color: #FFCC00; }
+    .platform-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
+    .platform-card p { font-size: 0.88rem; color: var(--text2); line-height: 1.65; }
+    .platform-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      margin-top: 18px;
+    }
+    .ptag {
+      font-size: 0.75rem;
+      background: rgba(255,255,255,0.07);
+      border-radius: 50px;
+      padding: 3px 10px;
+      color: var(--text3);
+    }
+
+    /* ===== QUICK START ===== */
+    #quickstart {
+      padding: 100px 0;
+      background: var(--bg);
+    }
+    .qs-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0;
+      position: relative;
+    }
+    .qs-steps::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: calc(50% / 5);
+      right: calc(50% / 5);
+      height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--orange));
+    }
+    .qs-step {
+      text-align: center;
+      padding: 0 16px;
+      position: relative;
+    }
+    .qs-num {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple2), var(--orange));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 0 24px rgba(124,58,237,0.4);
+    }
+    .qs-step h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+    .qs-step p { font-size: 0.82rem; color: var(--text2); }
+    .qs-cta {
+      text-align: center;
+      margin-top: 56px;
+    }
+
+    /* ===== PACKAGES ===== */
+    #packages {
+      padding: 100px 0;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+    }
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+    .pkg-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 28px;
+      position: relative;
+      transition: all 0.4s;
+    }
+    .pkg-card.featured {
+      background: linear-gradient(135deg, rgba(124,58,237,0.18), rgba(249,115,22,0.1));
+      border-color: rgba(124,58,237,0.45);
+      transform: scale(1.04);
+      box-shadow: 0 0 60px rgba(124,58,237,0.25);
+    }
+    .pkg-card:hover { transform: translateY(-6px); }
+    .pkg-card.featured:hover { transform: scale(1.04) translateY(-6px); }
+    .pkg-badge-pop {
+      position: absolute;
+      top: -14px; left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--purple), var(--orange));
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 5px 18px;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+    .pkg-icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .pkg-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .pkg-who { font-size: 0.82rem; color: var(--text2); margin-bottom: 20px; line-height: 1.55; }
+    .pkg-price {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .pkg-price-note { font-size: 0.8rem; color: var(--text2); margin-bottom: 24px; }
+    .pkg-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 20px 0;
+    }
+    .pkg-features { list-style: none; display: flex; flex-direction: column; gap: 11px; margin-bottom: 32px; }
+    .pkg-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--text3);
+    }
+    .pkg-features li .pk-icon { flex-shrink: 0; margin-top: 2px; }
+    .pkg-features li .ok { color: var(--green); }
+    .pkg-features li .no { color: var(--text2); opacity: 0.45; }
+    .pkg-btn {
+      display: block;
+      text-align: center;
+      width: 100%;
+      padding: 13px 24px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+    .pkg-btn-pri {
+      background: linear-gradient(135deg, var(--purple), var(--orange));
+      color: #fff;
+    }
+    .pkg-btn-pri:hover { opacity: 0.9; transform: translateY(-2px); }
+    .pkg-btn-out {
+      border: 2px solid rgba(255,255,255,0.2);
+      color: var(--text);
+    }
+    .pkg-btn-out:hover { border-color: var(--violet); background: rgba(124,58,237,0.15); }
+
+    /* ===== ADVANTAGES / WHY US ===== */
+    #whyus {
+      padding: 100px 0;
+      background: var(--bg2);
+    }
+    .whyus-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .why-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 30px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: all 0.3s;
+    }
+    .why-card:hover { border-color: rgba(124,58,237,0.3); transform: translateY(-3px); }
+    .why-icon {
+      width: 54px; height: 54px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .why-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .why-card p { font-size: 0.88rem; color: var(--text2); line-height: 1.65; }
+
+    /* ===== FAQ ===== */
+    #faq {
+      padding: 100px 0;
+      background: var(--bg);
+    }
+    .faq-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .faq-item.open { border-color: rgba(124,58,237,0.3); }
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      padding: 20px 24px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .faq-q .faq-arr {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.3s, background 0.3s;
+      font-size: 0.9rem;
+    }
+    .faq-item.open .faq-arr { transform: rotate(180deg); background: rgba(124,58,237,0.3); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+    }
+    .faq-a-inner {
+      padding: 0 24px 20px;
+      font-size: 0.9rem;
+      color: var(--text2);
+      line-height: 1.75;
+    }
+
+    /* ===== FINAL CTA ===== */
+    #cta {
+      padding: 100px 0;
+      background: linear-gradient(135deg, rgba(124,58,237,0.2) 0%, rgba(249,115,22,0.12) 100%);
+      border-top: 1px solid rgba(124,58,237,0.2);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #cta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(124,58,237,0.15) 0%, transparent 70%);
+    }
+    .cta-inner { position: relative; z-index: 2; }
+    .cta-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .cta-sub { font-size: 1.1rem; color: var(--text3); margin-bottom: 40px; }
+    .cta-actions { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+
+    /* ===== CONTACT FORM ===== */
+    #form-section {
+      padding: 100px 0;
+      background: var(--bg2);
+    }
+    .form-wrapper {
+      max-width: 660px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 48px 40px;
+    }
+    .form-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .form-sub { font-size: 0.9rem; color: var(--text2); margin-bottom: 32px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 7px;
+      color: var(--text3);
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 16px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--violet);
+      box-shadow: 0 0 0 3px rgba(124,58,237,0.15);
+    }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-group select option { background: #0D1030; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: var(--text2);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .form-consent input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; accent-color: var(--violet); }
+    .form-consent a { color: var(--violet); text-decoration: underline; }
+    .form-submit {
+      width: 100%;
+      padding: 15px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, var(--purple), var(--orange));
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: all 0.3s;
+    }
+    .form-submit:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,58,237,0.5); }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px;
+    }
+    .form-success .suc-icon { font-size: 3.5rem; margin-bottom: 16px; }
+    .form-success h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 10px; }
+    .form-success p { color: var(--text2); font-size: 0.95rem; }
+    .form-error-msg {
+      display: none;
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      color: #FCA5A5;
+      margin-bottom: 16px;
+    }
+
+    /* ===== CONTACTS PLACEHOLDER ===== */
+    #contacts {
+      padding: 80px 0;
+      background: var(--bg);
+    }
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .contact-card:hover { border-color: rgba(124,58,237,0.3); transform: translateY(-3px); }
+    .contact-card .cc-icon { font-size: 2rem; margin-bottom: 12px; }
+    .contact-card .cc-label { font-size: 0.8rem; color: var(--text2); margin-bottom: 6px; }
+    .contact-card .cc-val { font-size: 0.95rem; font-weight: 600; }
+    .contact-card.placeholder .cc-val { color: var(--text2); font-style: italic; opacity: 0.6; }
+    .tg-link { color: #26a5e4; text-decoration: none; }
+    .tg-link:hover { text-decoration: underline; }
+
+    /* ===== FOOTER ===== */
+    #footer {
+      background: #050710;
+      border-top: 1px solid var(--border);
+      padding: 60px 0 30px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+    .footer-brand { }
+    .footer-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .footer-logo span { color: var(--orange); }
+    .footer-desc { font-size: 0.88rem; color: var(--text2); line-height: 1.7; max-width: 280px; }
+    .footer-social { display: flex; gap: 12px; margin-top: 20px; }
+    .soc-btn {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+    }
+    .soc-btn:hover { background: rgba(124,58,237,0.2); border-color: var(--violet); }
+    .footer-col h5 { font-size: 0.9rem; font-weight: 700; margin-bottom: 18px; color: var(--text); }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a {
+      font-size: 0.85rem;
+      color: var(--text2);
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--violet); }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .footer-copy { font-size: 0.82rem; color: var(--text2); }
+    .footer-policy { display: flex; gap: 20px; }
+    .footer-policy a { font-size: 0.82rem; color: var(--text2); transition: color 0.2s; }
+    .footer-policy a:hover { color: var(--violet); }
+
+    /* ===== STICKY CTA MOBILE ===== */
+    .sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 900;
+      background: linear-gradient(135deg, var(--purple), var(--orange));
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 13px 28px;
+      border-radius: 50px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      white-space: nowrap;
+    }
+
+    /* ===== FLOATING TG BUTTON ===== */
+    .float-tg {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: #26a5e4;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 8px 24px rgba(38,165,228,0.5);
+      z-index: 888;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    .float-tg:hover { transform: scale(1.1); box-shadow: 0 12px 32px rgba(38,165,228,0.6); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .about-grid { grid-template-columns: 1fr; gap: 50px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 860px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+      .packages-grid { grid-template-columns: 1fr; }
+      .pkg-card.featured { transform: none; }
+      .pkg-card.featured:hover { transform: translateY(-6px); }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .platforms-grid { grid-template-columns: 1fr; }
+      .form-wrapper { padding: 32px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+      .sticky-cta { display: flex; }
+      .float-tg { bottom: 80px; }
+    }
+    @media (max-width: 600px) {
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn-primary,
+      .hero-actions .btn-outline { width: 100%; justify-content: center; }
+      .footer-top { grid-template-columns: 1fr; }
+      .qs-steps::before { display: none; }
+      .qs-steps { gap: 32px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .whyus-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== LIGHT THEME ===== */
+    [data-theme="light"] {
+      --bg:     #F5F7FF;
+      --bg2:    #EDF0FB;
+      --card:   rgba(0,0,0,0.04);
+      --border: rgba(0,0,0,0.1);
+      --text:   #0F172A;
+      --text2:  #475569;
+      --text3:  #334155;
+      --shadow: 0 20px 60px rgba(0,0,0,0.1);
+    }
+    [data-theme="light"] body { background: var(--bg); }
+    [data-theme="light"] #navbar.scrolled {
+      background: rgba(245,247,255,0.95);
+      border-bottom-color: rgba(0,0,0,0.1);
+    }
+    [data-theme="light"] .mobile-menu { background: rgba(245,247,255,0.99); }
+    [data-theme="light"] .mobile-menu a { color: var(--text); }
+    [data-theme="light"] .float-card { background: rgba(255,255,255,0.95); border-color: rgba(0,0,0,0.1); }
+    [data-theme="light"] .hero-grid { opacity: 0.15; }
+    [data-theme="light"] .hero-bg { opacity: 0.6; }
+    [data-theme="light"] .about-card-main { background: linear-gradient(135deg,rgba(124,58,237,0.08),rgba(249,115,22,0.06)); }
+    [data-theme="light"] .form-group input,
+    [data-theme="light"] .form-group textarea,
+    [data-theme="light"] .form-group select {
+      background: rgba(255,255,255,0.9);
+      border-color: rgba(0,0,0,0.15);
+      color: var(--text);
+    }
+    [data-theme="light"] .form-group select option { background: #EDF0FB; color: #0F172A; }
+    [data-theme="light"] .form-wrapper { background: rgba(255,255,255,0.7); border-color: rgba(0,0,0,0.1); }
+    [data-theme="light"] #footer { background: #E8ECF8; }
+    [data-theme="light"] .mp-badge { background: rgba(0,0,0,0.06); }
+    [data-theme="light"] .btn-outline { border-color: rgba(0,0,0,0.2); color: var(--text); }
+    [data-theme="light"] .btn-outline:hover { border-color: var(--violet); background: rgba(124,58,237,0.08); }
+    [data-theme="light"] #trust { background: rgba(0,0,0,0.02); }
+    [data-theme="light"] #stats { background: linear-gradient(135deg,rgba(124,58,237,0.07) 0%,rgba(249,115,22,0.05) 100%); }
+
+    /* ===== NAV CONTROLS (theme + lang) ===== */
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .ctrl-btn {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      color: var(--text2);
+      transition: all 0.25s;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .ctrl-btn:hover {
+      background: rgba(124,58,237,0.15);
+      border-color: var(--violet);
+      color: var(--text);
+    }
+    .lang-btn {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      width: auto;
+      padding: 0 11px;
+    }
+    /* Flash prevention */
+    html { transition: background-color 0.3s; }
+  </style>
+  <!-- Prevent dark→light flash on reload -->
+  <script>
+    (function(){
+      var t = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+
+<!-- ===== FLOATING TELEGRAM BUTTON ===== -->
+<a href="https://t.me/Ivan_2manof" target="_blank" rel="noopener" class="float-tg" title="Написать в Telegram">
+  <svg width="30" height="30" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M120 0C53.73 0 0 53.73 0 120s53.73 120 120 120 120-53.73 120-120S186.27 0 120 0zm59.48 81.93l-20.25 95.45c-1.48 6.6-5.4 8.23-10.95 5.12l-30.3-22.32-14.62 14.08c-1.62 1.62-2.97 2.97-6.09 2.97l2.17-30.78 56.1-50.67c2.43-2.16-.53-3.36-3.78-1.2l-69.35 43.67-29.88-9.35c-6.5-2.03-6.63-6.5 1.35-9.62l116.7-45.01c5.4-1.98 10.13 1.31 8.9 7.66z" fill="white"/>
+  </svg>
+</a>
+
+<!-- ===== MOBILE STICKY CTA ===== -->
+<a href="#form-section" class="sticky-cta" data-i18n="sticky_cta">🚀 Оставить заявку</a>
+
+<!-- ===== MOBILE MENU ===== -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">О нас</a>
+  <a href="#services" onclick="closeMobile()">Услуги</a>
+  <a href="#packages" onclick="closeMobile()">Пакеты</a>
+  <a href="#quickstart" onclick="closeMobile()">Быстрый старт</a>
+  <a href="#faq" onclick="closeMobile()">FAQ</a>
+  <a href="#form-section" onclick="closeMobile()">Связаться</a>
+</div>
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">TopUp<span>Seller</span></a>
+      <ul class="nav-links">
+        <li><a href="#about" data-i18n="nav_about">О нас</a></li>
+        <li><a href="#services" data-i18n="nav_services">Услуги</a></li>
+        <li><a href="#packages" data-i18n="nav_packages">Пакеты</a></li>
+        <li><a href="#quickstart" data-i18n="nav_quickstart">Быстрый старт</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contacts" data-i18n="nav_contacts">Контакты</a></li>
+      </ul>
+      <!-- Theme + Lang controls -->
+      <div class="nav-controls">
+        <button class="ctrl-btn" id="themeToggle" onclick="toggleTheme()" title="Сменить тему">🌙</button>
+        <button class="ctrl-btn lang-btn" id="langToggle" onclick="toggleLang()">EN</button>
+      </div>
+      <a href="#form-section" class="btn-primary nav-cta"><span data-i18n="nav_cta">Оставить заявку</span></a>
+      <button class="hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <canvas id="particles-canvas"></canvas>
+  <div class="container">
+    <div class="hero-inner">
+      <!-- LEFT: text content -->
+      <div class="hero-content">
+        <div class="hero-badge reveal">
+          <span class="dot"></span>
+          <span data-i18n="hero_badge">Агентство полного цикла · Работаем с 2020 года</span>
+        </div>
+        <h1 class="hero-title reveal" data-i18n-html="hero_title">
+          Ваш бизнес на маркетплейсах —<br/>
+          <span class="grad">под контролем</span><br/>
+          профессионалов
+        </h1>
+        <p class="hero-sub reveal" data-i18n="hero_sub">
+          TopUpSeller берёт на себя всё: от создания карточек и SEO до рекламы,
+          фулфилмента и отгрузок. Вы получаете рост продаж без погружения в детали.
+        </p>
+        <div class="hero-actions reveal">
+          <a href="#form-section" class="btn-primary"><span data-i18n="hero_cta1">🚀 Получить бесплатный аудит</span></a>
+          <a href="#packages" class="btn-outline" data-i18n="hero_cta2">Смотреть пакеты →</a>
+        </div>
+        <div class="hero-mp reveal">
+          <span class="hero-mp-label" data-i18n="hero_mp_label">Работаем на:</span>
+          <span class="mp-badge wb"><span class="mp-dot wb"></span>Wildberries</span>
+          <span class="mp-badge oz"><span class="mp-dot oz"></span>Ozon</span>
+          <span class="mp-badge ym"><span class="mp-dot ym"></span>Яндекс Маркет</span>
+        </div>
+      </div>
+      <!-- RIGHT: floating stats cards -->
+      <div class="hero-visual">
+        <div class="float-card">
+          <div class="float-card-label" data-i18n="fc1_label">Рост продаж у клиентов</div>
+          <div class="float-card-value grad">+320%</div>
+          <div class="float-card-sub" data-i18n="fc1_sub">↑ средний показатель за 6 мес</div>
+        </div>
+        <div class="float-card">
+          <div class="float-card-label" data-i18n="fc2_label">Магазинов под управлением</div>
+          <div class="float-card-value grad-blue">150+</div>
+          <div class="float-card-sub" data-i18n="fc2_sub">↑ активных клиентов</div>
+        </div>
+        <div class="float-card">
+          <div class="float-card-label" data-i18n="fc3_label">Карточек товаров создано</div>
+          <div class="float-card-value" style="color:#F97316">10 000+</div>
+          <div class="float-card-sub" data-i18n="fc3_sub">↑ за всё время работы</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST STRIP ===== -->
+<section id="trust">
+  <div class="container">
+    <div class="trust-inner">
+      <div class="trust-item reveal">
+        <div class="trust-icon">🏆</div>
+        <div>
+          <div class="trust-label" data-i18n="trust1_label">5+ лет на рынке</div>
+          <div class="trust-val" data-i18n="trust1_val">реального опыта</div>
+        </div>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon">📦</div>
+        <div>
+          <div class="trust-label" data-i18n="trust2_label">Все категории товаров</div>
+          <div class="trust-val" data-i18n="trust2_val">включая крупногабарит</div>
+        </div>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon">📊</div>
+        <div>
+          <div class="trust-label" data-i18n="trust3_label">Прозрачная аналитика</div>
+          <div class="trust-val" data-i18n="trust3_val">отчёты каждую неделю</div>
+        </div>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon">🤝</div>
+        <div>
+          <div class="trust-label" data-i18n="trust4_label">Работа по договору</div>
+          <div class="trust-val" data-i18n="trust4_val">юридическая защита</div>
+        </div>
+      </div>
+      <div class="trust-item reveal">
+        <div class="trust-icon">⚡</div>
+        <div>
+          <div class="trust-label" data-i18n="trust5_label">Старт за 5 дней</div>
+          <div class="trust-val" data-i18n="trust5_val">аудит → договор → запуск</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PAIN POINTS ===== -->
+<section id="pain">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag reveal" data-i18n="pain_tag">Узнайте себя?</div>
+      <h2 class="section-title reveal" data-i18n-html="pain_title">Типичные проблемы селлеров,<br/><span class="grad">которые мы решаем</span></h2>
+      <p class="section-sub reveal">Каждый день тысячи продавцов теряют деньги из-за ошибок, которых можно было избежать. Мы знаем, как.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <div class="pain-icon">😤</div>
+        <h3>Карточки не выходят в топ</h3>
+        <p>Плохие фото, слабое SEO, неправильная категория — и ваш товар никто не видит. Конкуренты обходят вас без каких-либо вложений.</p>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">💸</div>
+        <h3>Реклама «сжигает» бюджет</h3>
+        <p>Запустили продвижение, потратили деньги, а продажи не выросли. Алгоритмы маркетплейсов работают иначе, чем вы думаете.</p>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">📉</div>
+        <h3>Продажи стоят на месте</h3>
+        <p>Вроде всё сделали, а результата нет. Непонятно, где точка роста и как выйти на новый уровень оборота.</p>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">🕐</div>
+        <h3>Нет времени на всё сразу</h3>
+        <p>Карточки, отгрузки, реклама, отзывы, маркировка — вы тонете в операционке и не можете думать о развитии.</p>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">🏗️</div>
+        <h3>Сложно выйти на новые МП</h3>
+        <p>Хотите масштабироваться с WB на Ozon или Яндекс Маркет, но не знаете с чего начать и как не потерять деньги.</p>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-icon">📋</div>
+        <h3>Честный знак и маркировка</h3>
+        <p>Меняющиеся требования к маркировке товаров вызывают головную боль. Штрафы за нарушения больно бьют по прибыли.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-content reveal-left">
+        <div class="tag" data-i18n="about_tag">Кто мы</div>
+        <h2 class="section-title" data-i18n-html="about_title">TopUpSeller — агентство, которое<br/><span class="grad">реально увеличивает продажи</span></h2>
+        <p class="about-text">Мы — команда практиков, которые каждый день работают с Wildberries, Ozon и Яндекс Маркет. Мы не теоретики — за плечами сотни запущенных магазинов в разных категориях: от продуктов питания до крупногабаритной мебели и техники.</p>
+        <p class="about-text">Наш подход — полное погружение в ваш бизнес. Мы не просто ведём карточки, мы строим систему продаж на маркетплейсах, которая работает долгосрочно и приносит предсказуемый результат.</p>
+        <div class="about-checkmarks">
+          <div class="check-item"><span class="ck">✓</span> Работаем во всех товарных категориях, включая крупногабарит и продукты питания</div>
+          <div class="check-item"><span class="ck">✓</span> Полный цикл: от регистрации ЛК до ежемесячной аналитики и масштабирования</div>
+          <div class="check-item"><span class="ck">✓</span> Официальный договор, NDA, прозрачная отчётность</div>
+          <div class="check-item"><span class="ck">✓</span> Персональный менеджер и регулярные созвоны по результатам</div>
+        </div>
+        <a href="#form-section" class="btn-primary"><span>Познакомиться с командой</span></a>
+      </div>
+      <div class="about-visual reveal-right">
+        <div class="about-card-main">
+          <div class="about-big-num grad">5+</div>
+          <div class="about-num-label">лет успешного опыта<br/>на маркетплейсах</div>
+          <div class="about-mini-cards">
+            <div class="about-mini">
+              <div class="about-mini-val grad">150+</div>
+              <div class="about-mini-label">клиентов<br/>под управлением</div>
+            </div>
+            <div class="about-mini">
+              <div class="about-mini-val" style="color:#F97316">3</div>
+              <div class="about-mini-label">маркетплейса<br/>в работе</div>
+            </div>
+            <div class="about-mini">
+              <div class="about-mini-val" style="color:#06B6D4">10к+</div>
+              <div class="about-mini-label">карточек<br/>создано</div>
+            </div>
+            <div class="about-mini">
+              <div class="about-mini-val" style="color:#10B981">98%</div>
+              <div class="about-mini-label">клиентов<br/>продлевают договор</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <span class="stat-num grad" data-count="320">0</span>
+        <div class="stat-label">% средний рост продаж<br/>за первые 6 месяцев работы</div>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-num" style="color:#F97316" data-count="150">0</span>
+        <div class="stat-label">магазинов активно<br/>под нашим управлением</div>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-num grad-blue" data-count="10000" data-suffix="к+">0</span>
+        <div class="stat-label">карточек товаров<br/>создано и оптимизировано</div>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-num" style="color:#10B981" data-count="5">0</span>
+        <div class="stat-label">дней от первого<br/>контакта до запуска</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag reveal" data-i18n="services_tag">Что мы делаем</div>
+      <h2 class="section-title reveal" data-i18n-html="services_title">Полный спектр услуг<br/><span class="grad">для вашего роста</span></h2>
+      <p class="section-sub reveal">Всё необходимое для успеха на маркетплейсах — в одном агентстве</p>
+    </div>
+    <div class="services-tabs reveal">
+      <button class="stab active" onclick="showTab('cards')">📦 Карточки товаров</button>
+      <button class="stab" onclick="showTab('promo')">📢 Продвижение</button>
+      <button class="stab" onclick="showTab('content')">🎨 Контент</button>
+      <button class="stab" onclick="showTab('ops')">⚙️ Операционка</button>
+    </div>
+
+    <div class="services-panel active" id="tab-cards">
+      <div class="srv-grid">
+        <div class="srv-card reveal">
+          <div class="srv-card-icon" style="background:rgba(124,58,237,0.15)">🔍</div>
+          <h3>SEO-оптимизация карточек</h3>
+          <p>Глубокий анализ ключевых слов, оптимизация заголовков, описаний и характеристик для выхода в топ поиска маркетплейса и Яндекса.</p>
+        </div>
+        <div class="srv-card reveal">
+          <div class="srv-card-icon" style="background:rgba(249,115,22,0.15)">📋</div>
+          <h3>Создание карточек с нуля</h3>
+          <p>Полное создание товарных карточек: структура, описание, характеристики, ключи, категория — всё по правилам маркетплейса.</p>
+        </div>
+        <div class="srv-card reveal">
+          <div class="srv-card-icon" style="background:rgba(6,182,212,0.15)">🏷️</div>
+          <h3>Работа с категориями</h3>
+          <p>Правильная расстановка по категориям — один из ключевых факторов видимости. Анализируем конкурентов и выбираем оптимальные.</p>
+        </div>
+        <div class="srv-card reveal">
+          <div class="srv-card-icon" style="background:rgba(16,185,129,0.15)">⭐</div>
+          <h3>Управление отзывами и рейтингом</h3>
+          <p>Мониторинг, ответы на отзывы, стратегия работы с негативом, повышение среднего рейтинга магазина.</p>
+        </div>
+        <div class="srv-card reveal">
+          <div class="srv-card-icon" style="background:rgba(168,85,247,0.15)">📊</div>
+          <h3>А/Б тестирование</h3>
+          <p>Тестируем разные варианты главных фото, заголовков и описаний — находим то, что реально конвертирует.</p>
+        </div>
+        <div class="srv-card reveal">
+          <div class="srv-card-icon" style="background:rgba(251,191,36,0.15)">🌐</div>
+          <h3>Витрина и Rich-контент</h3>
+          <p>Создание брендированной витрины магазина и Rich-контента (расширенные описания с медиа) на поддерживающих площадках.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="services-panel" id="tab-promo">
+      <div class="srv-grid">
+        <div class="srv-card reveal">
+          <div class="srv-card-icon" style="background:rgba(249,115,22,0.15)">🎯</div>
+          <h3>Внутренняя реклама МП</h3>
+          <p>Настройка и ведение всех форматов рекламы: поисковое продвижение, баннеры, трафаретная реклама на WB, Ozon и ЯМ.</p>
+        </div>
+        <div class="srv-card reveal">
+          <div class="srv-card-icon" style="background:rgba(124,58,237,0.15)">📈</div>
+          <h3>Аналитика и стратегия</h3>
+          <p>Еженедельные отчёты по продажам, позициям, рекламе. Корректировка стратегии на основе реальных данных.</p>
+        </div>
+        <div class="srv-card reveal">
+          <div class="srv-card-icon" style="background:rgba(6,182,212,0.15)">🔖</div>
+          <h3>Акции и скидки</h3>
+          <p>Участие в акциях маркетплейса, настройка скидок, промокодов — максимизируем выгоду при минимальных потерях маржи.</p>
+        </div>
+        <div class="srv-card reveal">
+          <div class="srv-card-icon" style="background:rgba(16,185,129,0.15)">🤳</div>
+          <h3>Внешний трафик</h3>
+          <p>Привлечение покупателей из VK, Telegram, блогеров и других каналов. Увеличивает органический рост карточки.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="services-panel" id="tab-content">
+      <div class="srv-grid">
+        <div class="srv-card reveal">
+          <div class="srv-card-icon" style="background:rgba(168,85,247,0.15)">📸</div>
+          <h3>Профессиональные фотографии</h3>
+          <p>Предметная съёмка, лайфстайл, фото на модели — создаём визуал, который продаёт ещё до прочтения описания.</p>
+        </div>
+        <div class="srv-card reveal">
+          <div class="srv-card-icon" style="background:rgba(249,115,22,0.15)">🎨</div>
+          <h3>Инфографика и баннеры</h3>
+          <p>Дизайн продающих инфографик с ключевыми преимуществами товара, размерные сетки, сравнительные таблицы.</p>
+        </div>
+        <div class="srv-card reveal">
+          <div class="srv-card-icon" style="background:rgba(6,182,212,0.15)">🎬</div>
+          <h3>Видео для карточек</h3>
+          <p>Видеообзоры, анимации и рекламные ролики для карточек товаров — значительно повышают конверсию.</p>
+        </div>
+        <div class="srv-card reveal">
+          <div class="srv-card-icon" style="background:rgba(16,185,129,0.15)">✍️</div>
+          <h3>Продающие описания</h3>
+          <p>Копирайтинг с учётом психологии покупателя и требований SEO: текст, который читают и который покупают.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="services-panel" id="tab-ops">
+      <div class="srv-grid">
+        <div class="srv-card reveal">
+          <div class="srv-card-icon" style="background:rgba(249,115,22,0.15)">🚚</div>
+          <h3>Фулфилмент и отгрузки</h3>
+          <p>Организация поставок на склады маркетплейсов (FBO/FBS), логистика, упаковка, стикеровка, контроль остатков.</p>
+        </div>
+        <div class="srv-card reveal">
+          <div class="srv-card-icon" style="background:rgba(124,58,237,0.15)">🏷️</div>
+          <h3>Честный знак и маркировка</h3>
+          <p>Полное сопровождение работы с системой «Честный знак»: регистрация, нанесение кодов, отчётность в системе.</p>
+        </div>
+        <div class="srv-card reveal">
+          <div class="srv-card-icon" style="background:rgba(6,182,212,0.15)">🏭</div>
+          <h3>Работа с крупногабаритом</h3>
+          <p>Опыт в категориях мебель, бытовая техника, стройматериалы — знаем все нюансы хранения и доставки больших товаров.</p>
+        </div>
+        <div class="srv-card reveal">
+          <div class="srv-card-icon" style="background:rgba(16,185,129,0.15)">📂</div>
+          <h3>Ведение личного кабинета</h3>
+          <p>Полное управление ЛК: загрузка товаров, работа с заказами, документооборот, мониторинг штрафов и статусов.</p>
+        </div>
+        <div class="srv-card reveal">
+          <div class="srv-card-icon" style="background:rgba(251,191,36,0.15)">🍎</div>
+          <h3>Продукты питания</h3>
+          <p>Специфика работы с FMCG категориями: сроки годности, документация, особенности хранения на складах МП.</p>
+        </div>
+        <div class="srv-card reveal">
+          <div class="srv-card-icon" style="background:rgba(168,85,247,0.15)">📑</div>
+          <h3>Документация и сертификация</h3>
+          <p>Помощь с декларациями соответствия, сертификатами, отказными письмами — всё для легальной работы на площадках.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PLATFORMS ===== -->
+<section id="platforms">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag reveal" data-i18n="platforms_tag">Маркетплейсы</div>
+      <h2 class="section-title reveal" data-i18n-html="platforms_title">Работаем на всех<br/><span class="grad">ключевых площадках</span></h2>
+    </div>
+    <div class="platforms-grid">
+      <div class="platform-card reveal">
+        <div class="platform-logo wb">WB</div>
+        <h3>Wildberries</h3>
+        <p>Крупнейший маркетплейс России. Знаем все алгоритмы ранжирования, требования к контенту и работу с рекламным кабинетом WB.</p>
+        <div class="platform-tags">
+          <span class="ptag">FBO / FBS</span>
+          <span class="ptag">WB Реклама</span>
+          <span class="ptag">Аналитика</span>
+          <span class="ptag">Отзывы</span>
+        </div>
+      </div>
+      <div class="platform-card reveal">
+        <div class="platform-logo oz">OZON</div>
+        <h3>Ozon</h3>
+        <p>45+ млн покупателей. Настраиваем все инструменты Ozon: FBO, FBS, Premium-продавец, Ozon Performance и Rich-контент.</p>
+        <div class="platform-tags">
+          <span class="ptag">FBO / FBS / DBS</span>
+          <span class="ptag">Ozon Ads</span>
+          <span class="ptag">Rich-контент</span>
+          <span class="ptag">Баллы</span>
+        </div>
+      </div>
+      <div class="platform-card reveal">
+        <div class="platform-logo ym">ЯМ</div>
+        <h3>Яндекс Маркет</h3>
+        <p>Высококонверсионная платформа с сильным органическим трафиком из Яндекс.Поиска. Особенно эффективна для электроники и дома.</p>
+        <div class="platform-tags">
+          <span class="ptag">FBY / FBS</span>
+          <span class="ptag">Яндекс Директ</span>
+          <span class="ptag">Буст</span>
+          <span class="ptag">Акции</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUICK START ===== -->
+<section id="quickstart">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag reveal" data-i18n="qs_tag">Быстрый старт</div>
+      <h2 class="section-title reveal" data-i18n-html="qs_title">От первого звонка<br/>до <span class="grad">первых продаж</span> — 5 шагов</h2>
+      <p class="section-sub reveal">Чёткий и прозрачный процесс запуска без лишней бюрократии</p>
+    </div>
+    <div class="qs-steps">
+      <div class="qs-step reveal">
+        <div class="qs-num">1</div>
+        <h4>Знакомство</h4>
+        <p>Бесплатная консультация, обсуждение вашего бизнеса и целей</p>
+      </div>
+      <div class="qs-step reveal">
+        <div class="qs-num">2</div>
+        <h4>Аудит</h4>
+        <p>Полный анализ текущего состояния магазина, конкурентов и ниши</p>
+      </div>
+      <div class="qs-step reveal">
+        <div class="qs-num">3</div>
+        <h4>Стратегия</h4>
+        <p>Разрабатываем дорожную карту роста с конкретными KPI и сроками</p>
+      </div>
+      <div class="qs-step reveal">
+        <div class="qs-num">4</div>
+        <h4>Договор</h4>
+        <p>Официальный договор, NDA, фиксируем условия и зоны ответственности</p>
+      </div>
+      <div class="qs-step reveal">
+        <div class="qs-num">5</div>
+        <h4>Запуск!</h4>
+        <p>Команда приступает к работе — уже на первой неделе видны первые изменения</p>
+      </div>
+    </div>
+    <div class="qs-cta reveal">
+      <a href="#form-section" class="btn-primary"><span>⚡ Начать прямо сейчас — бесплатно</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PACKAGES ===== -->
+<section id="packages">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag reveal" data-i18n="packages_tag">Тарифы</div>
+      <h2 class="section-title reveal" data-i18n-html="packages_title">Выберите свой пакет<br/><span class="grad">под ваши цели</span></h2>
+      <p class="section-sub reveal">Гибкие форматы сотрудничества для бизнеса на любом этапе</p>
+    </div>
+    <div class="packages-grid">
+
+      <!-- СТАРТ -->
+      <div class="pkg-card reveal">
+        <div class="pkg-icon">🌱</div>
+        <div class="pkg-name">Старт</div>
+        <div class="pkg-who">Для тех, кто только выходит на маркетплейсы и хочет начать правильно с первого раза</div>
+        <div class="pkg-price grad">от 25 000 ₽<span style="font-size:1rem;font-weight:400;color:var(--text2)">/мес</span></div>
+        <div class="pkg-price-note">+ индивидуальный расчёт по задачам</div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li><span class="pk-icon ok">✓</span> Регистрация и настройка ЛК (1 площадка)</li>
+          <li><span class="pk-icon ok">✓</span> Анализ ниши и конкурентов</li>
+          <li><span class="pk-icon ok">✓</span> Создание карточек товаров до 20 шт</li>
+          <li><span class="pk-icon ok">✓</span> Базовая SEO-оптимизация</li>
+          <li><span class="pk-icon ok">✓</span> Инфографика на фото (базовая)</li>
+          <li><span class="pk-icon ok">✓</span> Настройка первых поставок (FBO/FBS)</li>
+          <li><span class="pk-icon ok">✓</span> Базовая рекламная кампания</li>
+          <li><span class="pk-icon ok">✓</span> Еженедельный отчёт</li>
+          <li><span class="pk-icon ok">✓</span> Поддержка 5 дней в неделю</li>
+          <li><span class="pk-icon no">✗</span> <span style="opacity:.45">Честный знак / маркировка</span></li>
+          <li><span class="pk-icon no">✗</span> <span style="opacity:.45">Видео-контент</span></li>
+          <li><span class="pk-icon no">✗</span> <span style="opacity:.45">Работа на 3-х МП одновременно</span></li>
+        </ul>
+        <a href="#form-section" class="pkg-btn pkg-btn-out">Выбрать Старт</a>
+      </div>
+
+      <!-- ПРОДВИНУТЫЙ -->
+      <div class="pkg-card featured reveal">
+        <div class="pkg-badge-pop">🔥 Самый популярный</div>
+        <div class="pkg-icon">🚀</div>
+        <div class="pkg-name grad">Продвинутый</div>
+        <div class="pkg-who">Для тех, кто уже торгует, но хочет значительно увеличить оборот и выйти в топ по своим категориям</div>
+        <div class="pkg-price" style="color:#F97316">от 55 000 ₽<span style="font-size:1rem;font-weight:400;color:var(--text2)">/мес</span></div>
+        <div class="pkg-price-note">+ фиксированный % от роста выручки</div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li><span class="pk-icon ok">✓</span> Аудит и переработка текущего магазина</li>
+          <li><span class="pk-icon ok">✓</span> До 2-х маркетплейсов одновременно</li>
+          <li><span class="pk-icon ok">✓</span> Создание и переработка карточек до 100 шт</li>
+          <li><span class="pk-icon ok">✓</span> Глубокое SEO + A/Б тестирование</li>
+          <li><span class="pk-icon ok">✓</span> Профессиональная инфографика и медиа</li>
+          <li><span class="pk-icon ok">✓</span> Полное управление рекламой (все форматы)</li>
+          <li><span class="pk-icon ok">✓</span> Работа с отзывами и рейтингом</li>
+          <li><span class="pk-icon ok">✓</span> Честный знак и маркировка</li>
+          <li><span class="pk-icon ok">✓</span> Аналитика продаж + еженедельные созвоны</li>
+          <li><span class="pk-icon ok">✓</span> Поддержка 7 дней в неделю</li>
+          <li><span class="pk-icon ok">✓</span> Персональный менеджер</li>
+          <li><span class="pk-icon no">✗</span> <span style="opacity:.45">Видео-контент для карточек</span></li>
+        </ul>
+        <a href="#form-section" class="pkg-btn pkg-btn-pri">Выбрать Продвинутый</a>
+      </div>
+
+      <!-- ПРОФИ -->
+      <div class="pkg-card reveal">
+        <div class="pkg-icon">💎</div>
+        <div class="pkg-name grad-blue">Профи</div>
+        <div class="pkg-who">Для бизнеса, который хочет максимальную долю рынка и системный рост без потолка</div>
+        <div class="pkg-price" style="color:#06B6D4">от 100 000 ₽<span style="font-size:1rem;font-weight:400;color:var(--text2)">/мес</span></div>
+        <div class="pkg-price-note">Индивидуальные условия по запросу</div>
+        <div class="pkg-divider"></div>
+        <ul class="pkg-features">
+          <li><span class="pk-icon ok">✓</span> Всё из пакета «Продвинутый»</li>
+          <li><span class="pk-icon ok">✓</span> Все 3 маркетплейса одновременно</li>
+          <li><span class="pk-icon ok">✓</span> Карточки без ограничений</li>
+          <li><span class="pk-icon ok">✓</span> Видео-контент для карточек</li>
+          <li><span class="pk-icon ok">✓</span> Работа с крупногабаритными товарами</li>
+          <li><span class="pk-icon ok">✓</span> Фулфилмент под ключ</li>
+          <li><span class="pk-icon ok">✓</span> Все форматы внешней рекламы</li>
+          <li><span class="pk-icon ok">✓</span> Ежемесячные стратегические сессии</li>
+          <li><span class="pk-icon ok">✓</span> Персональный менеджер 24/7</li>
+          <li><span class="pk-icon ok">✓</span> Приоритетная поддержка</li>
+          <li><span class="pk-icon ok">✓</span> Разработка СТМ (по запросу)</li>
+          <li><span class="pk-icon ok">✓</span> Помощь с сертификацией товаров</li>
+        </ul>
+        <a href="#form-section" class="pkg-btn pkg-btn-out">Обсудить Профи</a>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:32px;font-size:0.88rem;color:var(--text2)">
+      Не знаете, какой пакет подойдёт? <a href="#form-section" style="color:var(--violet);text-decoration:underline">Оставьте заявку</a> — поможем разобраться бесплатно
+    </p>
+  </div>
+</section>
+
+<!-- ===== WHY US ===== -->
+<section id="whyus">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag reveal" data-i18n="whyus_tag">Наши преимущества</div>
+      <h2 class="section-title reveal" data-i18n-html="whyus_title">Почему выбирают<br/><span class="grad">TopUpSeller</span></h2>
+      <p class="section-sub reveal">Мы не просто «ведём» — мы строим продающую машину под ваш бизнес</p>
+    </div>
+    <div class="whyus-grid">
+      <div class="why-card reveal">
+        <div class="why-icon" style="background:rgba(124,58,237,0.15)">🎯</div>
+        <div>
+          <h4>Реальный опыт, а не теория</h4>
+          <p>5+ лет практики. Мы прошли через сотни кейсов в разных нишах, сезонах и алгоритмах. Знаем, что работает именно сейчас.</p>
+        </div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon" style="background:rgba(249,115,22,0.15)">📦</div>
+        <div>
+          <h4>Все категории, включая сложные</h4>
+          <p>Обычные товары, продукты питания, крупногабарит — работаем там, куда другие не берутся из-за сложности.</p>
+        </div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon" style="background:rgba(6,182,212,0.15)">📊</div>
+        <div>
+          <h4>Прозрачная аналитика и отчёты</h4>
+          <p>Еженедельные отчёты с понятными метриками: позиции, продажи, ROAS, остатки. Вы всегда знаете, что происходит.</p>
+        </div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon" style="background:rgba(16,185,129,0.15)">🔗</div>
+        <div>
+          <h4>Работаем по договору</h4>
+          <p>Официальный договор, NDA, фиксированные KPI и чёткие зоны ответственности. Никаких договорённостей «на словах».</p>
+        </div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon" style="background:rgba(168,85,247,0.15)">⚡</div>
+        <div>
+          <h4>Быстрый старт — 5 дней</h4>
+          <p>От первого разговора до начала работы — максимум 5 рабочих дней. Не теряем ваше время на бюрократию.</p>
+        </div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon" style="background:rgba(251,191,36,0.15)">🧩</div>
+        <div>
+          <h4>Комплексный подход</h4>
+          <p>Одна команда закрывает всё: контент, SEO, рекламу, логистику, маркировку. Не нужно координировать 5 разных подрядчиков.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag reveal">FAQ</div>
+      <h2 class="section-title reveal" data-i18n="faq_title">Частые вопросы</h2>
+      <p class="section-sub reveal">Отвечаем на то, что спрашивают чаще всего</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Я только начинаю. Подойдут ли ваши услуги?
+          <span class="faq-arr">▼</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Да! Именно для этого создан пакет «Старт». Мы поможем зарегистрировать личный кабинет, выбрать нишу, создать первые карточки и настроить поставки. Вы начнёте правильно с первого дня, избежав дорогостоящих ошибок новичков.</div>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Сколько времени занимает вывод товара в топ?
+          <span class="faq-arr">▼</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Всё зависит от ниши и исходного состояния магазина. В среднем первые заметные результаты появляются через 4–6 недель. Рост в топ-10 по ключевым запросам — 2–4 месяца при системной работе. Мы честно обсуждаем сроки на старте и фиксируем реалистичные KPI в договоре.</div>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Вы работаете с продуктами питания и крупногабаритом?
+          <span class="faq-arr">▼</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Да, это одна из наших специализаций. Мы знаем особенности работы с FMCG категориями (сроки годности, документация, ротация на складе), а также все нюансы крупногабаритных товаров — мебель, бытовая техника, стройматериалы. Работаем с соответствующими схемами FBO и FBS на каждой площадке.</div>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Как устроено ценообразование? Есть ли скрытые платежи?
+          <span class="faq-arr">▼</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Никаких скрытых платежей. Стоимость фиксируется в договоре. В некоторых пакетах предусмотрен небольшой % от прироста выручки — это мотивирует нас работать на ваш результат, а не просто «делать вид». Рекламный бюджет всегда отдельно и согласовывается с вами.</div>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Вы даёте доступ к ЛК или ведёте сами?
+          <span class="faq-arr">▼</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Работаем удобным для вас способом. Чаще всего клиент даёт нам права сотрудника в своём ЛК — вы всегда видите всё, что происходит. В рамках NDA мы гарантируем полную конфиденциальность ваших данных и не передаём их третьим лицам.</div>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Что если результат не устроит?
+          <span class="faq-arr">▼</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">На старте мы фиксируем KPI и базовые показатели. Если по итогам расчётного периода они не достигнуты по нашей вине, мы пересматриваем условия сотрудничества. Главное — открытая коммуникация: мы всегда честно говорим о ситуации и предлагаем решения, а не оправдания.</div>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Работаете ли вы с Честным знаком?
+          <span class="faq-arr">▼</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">Да, работаем с системой «Честный знак» по всем обязательным категориям (одежда, обувь, парфюмерия, молочная продукция и др.). Помогаем с регистрацией в системе, нанесением кодов маркировки, отчётностью в ГИСМТ. Это входит в пакет «Продвинутый» и «Профи».</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section id="cta">
+  <div class="cta-inner container reveal">
+    <div class="tag" style="background:rgba(249,115,22,0.15);color:var(--orange);border-color:rgba(249,115,22,0.3)" data-i18n="cta_tag">Готовы начать?</div>
+    <h2 class="cta-title" data-i18n-html="cta_title">Ваши конкуренты уже работают<br/>с профессионалами. <span class="grad">А вы?</span></h2>
+    <p class="cta-sub" data-i18n="cta_sub">Получите бесплатный аудит вашего магазина и узнайте точки роста уже сегодня</p>
+    <div class="cta-actions">
+      <a href="#form-section" class="btn-primary"><span data-i18n="cta_cta1">🚀 Получить бесплатный аудит</span></a>
+      <a href="https://t.me/Ivan_2manof" target="_blank" rel="noopener" class="btn-outline">💬 Написать в Telegram</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT FORM ===== -->
+<section id="form-section">
+  <div class="container">
+    <div class="form-wrapper">
+      <h3 class="form-title" data-i18n="form_title">Оставьте заявку</h3>
+      <p class="form-sub" data-i18n="form_sub">Менеджер перезвонит в течение 30 минут в рабочее время и ответит на все вопросы</p>
+      <div class="form-error-msg" id="formError">Ошибка отправки. Пожалуйста, попробуйте ещё раз или напишите нам напрямую.</div>
+      <form id="leadForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">Ваше имя *</label>
+            <input type="text" id="fname" name="name" placeholder="Иван Иванов" required />
+          </div>
+          <div class="form-group">
+            <label for="fphone">Телефон *</label>
+            <input type="tel" id="fphone" name="phone" placeholder="+7 (___) ___-__-__" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="femail">Email</label>
+            <input type="email" id="femail" name="email" placeholder="ivan@mail.ru" />
+          </div>
+          <div class="form-group">
+            <label for="fpackage">Интересующий пакет</label>
+            <select id="fpackage" name="package">
+              <option value="">— Не определился —</option>
+              <option value="Старт">🌱 Старт</option>
+              <option value="Продвинутый">🚀 Продвинутый</option>
+              <option value="Профи">💎 Профи</option>
+              <option value="Обсудить">Хочу обсудить индивидуально</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fmsg">Расскажите о вашем бизнесе</label>
+          <textarea id="fmsg" name="message" placeholder="На каком маркетплейсе торгуете, какие товары, текущие обороты, с чем нужна помощь..."></textarea>
+        </div>
+        <div class="form-consent">
+          <input type="checkbox" id="fConsent" required />
+          <label for="fConsent">Нажимая кнопку, вы соглашаетесь с <a href="privacy.html" target="_blank">политикой конфиденциальности</a> и даёте согласие на обработку персональных данных</label>
+        </div>
+        <button type="submit" class="form-submit" id="submitBtn">
+          Отправить заявку — перезвоним за 30 мин ✅
+        </button>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <div class="suc-icon">🎉</div>
+        <h3>Заявка отправлена!</h3>
+        <p>Наш менеджер свяжется с вами в течение 30 минут.<br/>Или напишите нам прямо сейчас:<br/>
+          <a href="https://t.me/Ivan_2manof" target="_blank" rel="noopener" style="color:#26a5e4;font-weight:600">@Ivan_2manof</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACTS ===== -->
+<section id="contacts">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag reveal" data-i18n="contacts_tag">Контакты</div>
+      <h2 class="section-title reveal" data-i18n-html="contacts_title">Свяжитесь с нами<br/><span class="grad">удобным способом</span></h2>
+    </div>
+    <div class="contacts-grid">
+      <div class="contact-card reveal">
+        <div class="cc-icon">💬</div>
+        <div class="cc-label">Telegram</div>
+        <div class="cc-val"><a href="https://t.me/Ivan_2manof" target="_blank" rel="noopener" class="tg-link">@Ivan_2manof</a></div>
+      </div>
+      <div class="contact-card reveal">
+        <div class="cc-icon">📧</div>
+        <div class="cc-label">Email</div>
+        <div class="cc-val"><a href="mailto:ivanko65098@mail.ru" style="color:var(--violet)">ivanko65098@mail.ru</a></div>
+      </div>
+      <div class="contact-card placeholder reveal">
+        <div class="cc-icon">📞</div>
+        <div class="cc-label">Телефон</div>
+        <div class="cc-val">Будет добавлен</div>
+      </div>
+      <div class="contact-card placeholder reveal">
+        <div class="cc-icon">📍</div>
+        <div class="cc-label">Адрес / офис</div>
+        <div class="cc-val">Будет добавлен</div>
+      </div>
+      <div class="contact-card placeholder reveal">
+        <div class="cc-icon">⏰</div>
+        <div class="cc-label">Время работы</div>
+        <div class="cc-val">Будет добавлено</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">TopUp<span>Seller</span></div>
+        <p class="footer-desc">Агентство полного цикла по ведению личных кабинетов на Wildberries, Ozon и Яндекс Маркет. Увеличиваем продажи, работаем с карточками, SEO, рекламой и фулфилментом.</p>
+        <div class="footer-social">
+          <a href="https://t.me/Ivan_2manof" target="_blank" rel="noopener" class="soc-btn" title="Telegram">✈️</a>
+          <a href="#" class="soc-btn" title="ВКонтакте">💙</a>
+          <a href="#" class="soc-btn" title="YouTube">▶️</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Услуги</h5>
+        <ul>
+          <li><a href="#services">SEO карточек</a></li>
+          <li><a href="#services">Реклама на МП</a></li>
+          <li><a href="#services">Фото и видео</a></li>
+          <li><a href="#services">Фулфилмент</a></li>
+          <li><a href="#services">Честный знак</a></li>
+          <li><a href="#services">Ведение ЛК</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Компания</h5>
+        <ul>
+          <li><a href="#about">О нас</a></li>
+          <li><a href="#packages">Пакеты и цены</a></li>
+          <li><a href="#quickstart">Быстрый старт</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Маркетплейсы</h5>
+        <ul>
+          <li><a href="#platforms">Wildberries</a></li>
+          <li><a href="#platforms">Ozon</a></li>
+          <li><a href="#platforms">Яндекс Маркет</a></li>
+        </ul>
+        <h5 style="margin-top:20px">Контакты</h5>
+        <ul>
+          <li><a href="https://t.me/Ivan_2manof" target="_blank" rel="noopener">Telegram</a></li>
+          <li><a href="mailto:ivanko65098@mail.ru">Email</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2020–2026 TopUpSeller. Все права защищены.</div>
+      <div class="footer-policy">
+        <a href="privacy.html" target="_blank">Политика конфиденциальности</a>
+        <a href="consent.html" target="_blank">Согласие на обработку данных</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+  /* -------- PARTICLES -------- */
+  (function(){
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, particles = [];
+    function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+    function Particle(){
+      this.x = Math.random()*W; this.y = Math.random()*H;
+      this.vx = (Math.random()-0.5)*0.4; this.vy = (Math.random()-0.5)*0.4;
+      this.r = Math.random()*1.5+0.5;
+      this.a = Math.random()*0.5+0.1;
+    }
+    for(let i=0;i<80;i++) particles.push(new Particle());
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      particles.forEach(p=>{
+        p.x+=p.vx; p.y+=p.vy;
+        if(p.x<0||p.x>W) p.vx*=-1;
+        if(p.y<0||p.y>H) p.vy*=-1;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle=`rgba(168,85,247,${p.a})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  /* -------- NAVBAR SCROLL -------- */
+  window.addEventListener('scroll', ()=>{
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY>40);
+  });
+
+  /* -------- MOBILE MENU -------- */
+  function toggleMobile(){
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.getElementById('hamburger').classList.toggle('open');
+    document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMobile(){
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* -------- SCROLL REVEAL -------- */
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){
+        setTimeout(()=>{ e.target.classList.add('visible'); }, i*80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>observer.observe(el));
+
+  /* -------- COUNTER ANIMATION -------- */
+  function animateCounter(el){
+    const target = parseInt(el.dataset.count);
+    const suffix = el.dataset.suffix || (target>=1000 ? 'к+' : target===10000 ? 'к+' : '+');
+    const displaySuffix = el.dataset.suffix !== undefined ? el.dataset.suffix : (target > 100 ? '+' : '+');
+    let start = 0;
+    const step = target / 60;
+    const timer = setInterval(()=>{
+      start += step;
+      if(start >= target){ start = target; clearInterval(timer); }
+      if(target === 10000) el.textContent = Math.floor(start/1000) + 'к+';
+      else el.textContent = Math.floor(start) + (target > 1 ? '+' : '+');
+    }, 25);
+  }
+  const counterObs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting && e.target.dataset.count){
+        animateCounter(e.target);
+        counterObs.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.5});
+  document.querySelectorAll('[data-count]').forEach(el=>counterObs.observe(el));
+
+  /* -------- SERVICE TABS -------- */
+  function showTab(id){
+    document.querySelectorAll('.stab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.services-panel').forEach(p=>p.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('tab-'+id).classList.add('active');
+    // re-trigger reveal animations
+    document.querySelectorAll('#tab-'+id+' .reveal').forEach(el=>{
+      el.classList.remove('visible');
+      setTimeout(()=>observer.observe(el),50);
+    });
+  }
+
+  /* -------- FAQ -------- */
+  function toggleFaq(btn){
+    const item = btn.parentElement;
+    const ans  = item.querySelector('.faq-a');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{
+      i.classList.remove('open');
+      i.querySelector('.faq-a').style.maxHeight = '0';
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      ans.style.maxHeight = ans.scrollHeight + 'px';
+    }
+  }
+
+  /* -------- FORM SUBMIT -------- */
+  document.getElementById('leadForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const errDiv = document.getElementById('formError');
+    errDiv.style.display = 'none';
+
+    const consent = document.getElementById('fConsent');
+    if(!consent.checked){ consent.focus(); return; }
+
+    const name    = document.getElementById('fname').value.trim();
+    const phone   = document.getElementById('fphone').value.trim();
+    const email   = document.getElementById('femail').value.trim();
+    const pkg     = document.getElementById('fpackage').value;
+    const msg     = document.getElementById('fmsg').value.trim();
+
+    if(!name || !phone){ alert('Заполните имя и телефон'); return; }
+
+    btn.textContent = '⏳ Отправляем...';
+    btn.disabled = true;
+
+    const text = `🆕 *Новая заявка с сайта TopUpSeller*\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n📧 Email: ${email||'—'}\n📦 Пакет: ${pkg||'не выбран'}\n💬 Сообщение:\n${msg||'—'}`;
+
+    let ok = false;
+
+    // 1. Telegram
+    try {
+      if(typeof TG_TOKEN !== 'undefined' && TG_TOKEN !== 'ЗАМЕНИТЕ_НА_ВАШ_ТОКЕН'){
+        const tgRes = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({ chat_id: TG_CHATID, text, parse_mode:'Markdown' })
+        });
+        if(tgRes.ok) ok = true;
+      }
+    } catch(er){}
+
+    // 2. Email via FormSubmit
+    try {
+      const fmRes = await fetch('https://formsubmit.co/ajax/ivanko65098@mail.ru', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json','Accept':'application/json'},
+        body: JSON.stringify({
+          name, phone, email, package: pkg, message: msg,
+          _subject: `Новая заявка с TopUpSeller от ${name}`,
+          _template: 'table'
+        })
+      });
+      if(fmRes.ok) ok = true;
+    } catch(er){}
+
+    btn.textContent = 'Отправить заявку — перезвоним за 30 мин ✅';
+    btn.disabled = false;
+
+    if(ok){
+      document.getElementById('leadForm').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    } else {
+      errDiv.style.display = 'block';
+    }
+  });
+
+  /* -------- PHONE MASK -------- */
+  document.getElementById('fphone').addEventListener('input', function(){
+    let v = this.value.replace(/\D/g,'');
+    if(v.startsWith('8')) v = '7'+v.slice(1);
+    if(v.startsWith('7')){
+      v = v.slice(0,11);
+      let r = '+7';
+      if(v.length>1) r+=' ('+v.slice(1,4);
+      if(v.length>4) r+=') '+v.slice(4,7);
+      if(v.length>7) r+='-'+v.slice(7,9);
+      if(v.length>9) r+='-'+v.slice(9,11);
+      this.value = r;
+    }
+  });
+
+  /* ======================================================
+     THEME TOGGLE
+  ====================================================== */
+  function toggleTheme(){
+    const root = document.documentElement;
+    const isLight = root.getAttribute('data-theme') === 'light';
+    const next = isLight ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    document.getElementById('themeToggle').textContent = next === 'light' ? '☀️' : '🌙';
+    localStorage.setItem('theme', next);
+  }
+  // Restore theme icon on load
+  (function(){
+    const t = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    const btn = document.getElementById('themeToggle');
+    if(btn) btn.textContent = t === 'light' ? '☀️' : '🌙';
+  })();
+
+  /* ======================================================
+     LANGUAGE SWITCHER — EN / RU
+  ====================================================== */
+  const T = {
+    ru: {
+      // Nav
+      nav_about:'О нас', nav_services:'Услуги', nav_packages:'Пакеты',
+      nav_quickstart:'Быстрый старт', nav_contacts:'Контакты', nav_cta:'Оставить заявку',
+      sticky_cta:'🚀 Оставить заявку',
+      // Hero
+      hero_badge:'Агентство полного цикла · Работаем с 2020 года',
+      hero_title:'Ваш бизнес на маркетплейсах —<br/><span class="grad">под контролем</span><br/>профессионалов',
+      hero_sub:'TopUpSeller берёт на себя всё: от создания карточек и SEO до рекламы, фулфилмента и отгрузок. Вы получаете рост продаж без погружения в детали.',
+      hero_cta1:'🚀 Получить бесплатный аудит', hero_cta2:'Смотреть пакеты →',
+      hero_mp_label:'Работаем на:',
+      // Float cards
+      fc1_label:'Рост продаж у клиентов', fc1_sub:'↑ средний показатель за 6 мес',
+      fc2_label:'Магазинов под управлением', fc2_sub:'↑ активных клиентов',
+      fc3_label:'Карточек товаров создано', fc3_sub:'↑ за всё время работы',
+      // Trust strip
+      trust1_label:'5+ лет на рынке', trust1_val:'реального опыта',
+      trust2_label:'Все категории товаров', trust2_val:'включая крупногабарит',
+      trust3_label:'Прозрачная аналитика', trust3_val:'отчёты каждую неделю',
+      trust4_label:'Работа по договору', trust4_val:'юридическая защита',
+      trust5_label:'Старт за 5 дней', trust5_val:'аудит → договор → запуск',
+      // Sections
+      pain_tag:'Узнайте себя?',
+      pain_title:'Типичные проблемы селлеров,<br/><span class="grad">которые мы решаем</span>',
+      about_tag:'Кто мы',
+      about_title:'TopUpSeller — агентство, которое<br/><span class="grad">реально увеличивает продажи</span>',
+      services_tag:'Что мы делаем',
+      services_title:'Полный спектр услуг<br/><span class="grad">для вашего роста</span>',
+      platforms_tag:'Маркетплейсы',
+      platforms_title:'Работаем на всех<br/><span class="grad">ключевых площадках</span>',
+      qs_tag:'Быстрый старт',
+      qs_title:'От первого звонка<br/>до <span class="grad">первых продаж</span> — 5 шагов',
+      packages_tag:'Тарифы',
+      packages_title:'Выберите свой пакет<br/><span class="grad">под ваши цели</span>',
+      whyus_tag:'Наши преимущества',
+      whyus_title:'Почему выбирают<br/><span class="grad">TopUpSeller</span>',
+      faq_title:'Частые вопросы',
+      cta_tag:'Готовы начать?',
+      cta_title:'Ваши конкуренты уже работают<br/>с профессионалами. <span class="grad">А вы?</span>',
+      cta_sub:'Получите бесплатный аудит вашего магазина и узнайте точки роста уже сегодня',
+      cta_cta1:'🚀 Получить бесплатный аудит',
+      form_title:'Оставьте заявку',
+      form_sub:'Менеджер перезвонит в течение 30 минут в рабочее время и ответит на все вопросы',
+      contacts_tag:'Контакты',
+      contacts_title:'Свяжитесь с нами<br/><span class="grad">удобным способом</span>',
+    },
+    en: {
+      // Nav
+      nav_about:'About', nav_services:'Services', nav_packages:'Packages',
+      nav_quickstart:'Quick Start', nav_contacts:'Contacts', nav_cta:'Get a Free Audit',
+      sticky_cta:'🚀 Get a Free Audit',
+      // Hero
+      hero_badge:'Full-Cycle Agency · Working since 2020',
+      hero_title:'Your marketplace business —<br/><span class="grad">under expert control</span><br/>of professionals',
+      hero_sub:'TopUpSeller handles everything: from product listings and SEO to advertising, fulfillment and shipping. You get measurable sales growth — without diving into the details.',
+      hero_cta1:'🚀 Get a Free Audit', hero_cta2:'View Packages →',
+      hero_mp_label:'We work on:',
+      // Float cards
+      fc1_label:'Client sales growth', fc1_sub:'↑ average over 6 months',
+      fc2_label:'Stores under management', fc2_sub:'↑ active clients',
+      fc3_label:'Product listings created', fc3_sub:'↑ total since launch',
+      // Trust strip
+      trust1_label:'5+ years on the market', trust1_val:'of real experience',
+      trust2_label:'All product categories', trust2_val:'including oversized goods',
+      trust3_label:'Transparent analytics', trust3_val:'weekly reports',
+      trust4_label:'Contract-based work', trust4_val:'legal protection',
+      trust5_label:'Launch in 5 days', trust5_val:'audit → contract → start',
+      // Sections
+      pain_tag:'Sound familiar?',
+      pain_title:'Common seller problems<br/><span class="grad">that we solve</span>',
+      about_tag:'Who We Are',
+      about_title:'TopUpSeller — the agency that<br/><span class="grad">actually grows your sales</span>',
+      services_tag:'What We Do',
+      services_title:'Full range of services<br/><span class="grad">for your growth</span>',
+      platforms_tag:'Marketplaces',
+      platforms_title:'We operate on all<br/><span class="grad">major platforms</span>',
+      qs_tag:'Quick Start',
+      qs_title:'From first call<br/>to <span class="grad">first sales</span> — 5 steps',
+      packages_tag:'Pricing',
+      packages_title:'Choose your plan<br/><span class="grad">to match your goals</span>',
+      whyus_tag:'Our Advantages',
+      whyus_title:'Why clients choose<br/><span class="grad">TopUpSeller</span>',
+      faq_title:'Frequently Asked Questions',
+      cta_tag:'Ready to start?',
+      cta_title:'Your competitors are already working<br/>with professionals. <span class="grad">Are you?</span>',
+      cta_sub:'Get a free audit of your store and discover growth opportunities today',
+      cta_cta1:'🚀 Get a Free Audit',
+      form_title:'Leave a Request',
+      form_sub:'Our manager will call you back within 30 minutes during business hours',
+      contacts_tag:'Contacts',
+      contacts_title:'Get in touch<br/><span class="grad">in any convenient way</span>',
+    }
+  };
+
+  let currentLang = localStorage.getItem('lang') || 'ru';
+
+  function applyLang(lang){
+    // Simple text nodes
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.getAttribute('data-i18n');
+      if(T[lang] && T[lang][key] !== undefined) el.textContent = T[lang][key];
+    });
+    // HTML nodes (contain spans with grad etc.)
+    document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+      const key = el.getAttribute('data-i18n-html');
+      if(T[lang] && T[lang][key] !== undefined) el.innerHTML = T[lang][key];
+    });
+    // Update html lang attr
+    document.documentElement.setAttribute('lang', lang);
+    // Update toggle button label
+    const lb = document.getElementById('langToggle');
+    if(lb) lb.textContent = lang === 'ru' ? 'EN' : 'РУ';
+  }
+
+  function toggleLang(){
+    currentLang = currentLang === 'ru' ? 'en' : 'ru';
+    localStorage.setItem('lang', currentLang);
+    applyLang(currentLang);
+  }
+
+  // Apply saved language on load
+  applyLang(currentLang);
+</script>
+</body>
+</html>
